@@ -1,28 +1,21 @@
-// function getToggle(callback) { // expects function(value){...}
-//   chrome.storage.local.get('toggle', function(data){
-//     if (data.toggle === undefined) {
-//       callback(false); // default value
-//     } else {
-//       callback(data.toggle);
-//     }
-//   });
-// }
-//
-// function setToggle(value, callback){ // expects function(){...}
-//   chrome.storage.local.set({toggle : value}, function(){
-//     if(chrome.runtime.lastError) {
-//       throw Error(chrome.runtime.lastError);
-//     } else {
-//       callback();
-//     }
-//   });
-// }
-//
-// chrome.browserAction.onClicked.addListener(function(tab) {
-//   getToggle(function(toggle){
-//     toggle = !toggle;
-//     setToggle(toggle, function(){
-//       /* The rest of your code; at this point toggle is saved */
-//     });
-//   });
-// });
+// sends a message to the content script
+function sendMsg(checked) {
+  chrome.tabs.query({}, tabs => {
+    tabs.forEach(tab => {
+      chrome.tabs.sendMessage(tab.id, { checked: checked });
+    });
+  });
+}
+
+// Restores checkbox state using the preferences stored in chrome.storage.sync
+const restoreOptions = () => {
+  chrome.storage.sync.get({ checked: false }, (item) => {
+    sendMsg(item.checked)
+  });
+}
+
+chrome.runtime.onMessage.addListener(function(request) {
+  if (request.checked) {
+    console.log('hi');
+  }
+});
