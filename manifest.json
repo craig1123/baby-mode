@@ -17,6 +17,16 @@
   "background": {
     "scripts": ["background.js"]
   },
+  "commands": {
+    "toggle-baby-mode": {
+       "suggested_key": {
+        "mac": "Command+Shift+0",
+        "windows": "Ctrl+Shift+0"
+      },
+      "description": "Toggle baby mode",
+      "global": true
+    }
+  },
   "content_scripts": [{
       "matches": ["<all_urls>"],
       "js":      ["content.js"]

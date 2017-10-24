@@ -1,21 +1,41 @@
-// sends a message to the content script
-function sendMsg(checked) {
-  chrome.tabs.query({}, tabs => {
-    tabs.forEach(tab => {
-      chrome.tabs.sendMessage(tab.id, { checked: checked });
+
+function sendMsgToCS(checked) {
+  chrome.tabs.query({}, function(tabs) {
+    tabs.forEach(function(tab) {
+      chrome.tabs.sendMessage(tab.id, { type: 'toggle', checked: checked }, function(res) {});
     });
   });
 }
 
-// Restores checkbox state using the preferences stored in chrome.storage.sync
-const restoreOptions = () => {
-  chrome.storage.sync.get({ checked: false }, (item) => {
-    sendMsg(item.checked)
+function toggleState() {
+  chrome.storage.sync.get({ checked: false }, function(item) {
+    sendMsgToCS(!item.checked);
+    chrome.storage.sync.set({ checked: !item.checked });
   });
-}
+};
+
+function restoreState(opposite) {
+  chrome.storage.sync.get({ checked: false }, function(item) {
+    sendMsgToCS(item.checked);
+  });
+};
+restoreState();
 
 chrome.runtime.onMessage.addListener(function(request) {
-  if (request.checked) {
-    console.log('hi');
+  if (request.type === 'toggle') {
+    sendMsgToCS(request.checked);
+  }
+});
+
+chrome.tabs.onUpdated.addListener(function (tabId, changeInfo, tab) {
+  if (changeInfo.status === 'complete') {
+    restoreState();
+  }
+})
+
+chrome.commands.onCommand.addListener(function(command) {
+  if (command === 'toggle-baby-mode') {
+    chrome.runtime.sendMessage({ type: 'switch' });
+    toggleState();
   }
 });

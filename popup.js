@@ -1,33 +1,25 @@
 function init() {
-  const toggle = document.getElementById('toggle');
+  var toggle = document.getElementById('toggle');
+  var ctrl = document.getElementById('ctrl');
+  ctrl.innerText = navigator.platform.toUpperCase().indexOf('MAC')>=0 ? 'cmd' : 'ctrl';
 
-  // sends a message to the content script
-  function sendMsg(checked) {
-    chrome.runtime.sendMessage({ checked: checked });
-    chrome.tabs.query({}, tabs => {
-      tabs.forEach(tab => {
-        chrome.tabs.sendMessage(tab.id, { checked: checked });
-      });
-    });
-  }
+  // initial state
+  chrome.storage.sync.get({ checked: false }, function(item) {
+    toggle.checked = item.checked;
+  })
 
-  // Restores checkbox state using the preferences stored in chrome.storage.sync
-  const restoreOptions = () => {
-    chrome.storage.sync.get({ checked: false }, (item) => {
-      toggle.checked = item.checked;
-      sendMsg(toggle.checked)
-    });
-  }
-
-  restoreOptions();
-
+  // sends a message to the background script and saves option
   toggle.addEventListener('click', function() {
-    chrome.storage.sync.set({ 'checked': toggle.checked })
-    sendMsg(toggle.checked);
+    chrome.storage.sync.set({ checked: toggle.checked });
+    chrome.runtime.sendMessage({ type: 'toggle', checked: toggle.checked });
   }, false);
 
-
+  // listens for messages from background
+  chrome.runtime.onMessage.addListener(function(request) {
+    if (request.type === 'switch') {
+      toggle.checked = !toggle.checked;
+    }
+  });
 }
-
 
 document.addEventListener('DOMContentLoaded', init, false);
