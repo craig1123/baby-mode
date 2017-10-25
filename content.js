@@ -1,9 +1,6 @@
 function keyboard(e) {
   e.preventDefault();
-  console.log(e.key);
-  // var myAudio = new Audio();        // create the audio object
-  // myAudio.src = "path/to/file.mp3"; // assign the audio file to its src
-  // myAudio.play();
+  chrome.runtime.sendMessage({ type: 'sound', sound: e.key });
   return false;
 };
 

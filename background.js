@@ -24,6 +24,10 @@ restoreState();
 chrome.runtime.onMessage.addListener(function(request) {
   if (request.type === 'toggle') {
     sendMsgToCS(request.checked);
+  } else if (request.type === 'sound') {
+    var myAudio = new Audio();        // create the audio object
+    myAudio.src = `./sounds/${request.sound}.m4a`; // assign the audio file to its src
+    myAudio.play();
   }
 });
 
