@@ -3,9 +3,11 @@
   "manifest_version": 2,
   "name": "Baby Mode",
   "description": "Makes your browser baby friendly",
-  "version": "1.0",
+  "version": "1.1",
+  "minimum_chrome_version": "28",
+  "offline_enabled": true,
   "browser_action": {
-    "default_icon": "icon.png",
+    "default_icon": "48.png",
     "default_popup": "popup.html",
     "default_title": "Baby Mode"
   },
@@ -28,7 +30,7 @@
     }
   },
   "web_accessible_resources": [
-    "icon.png"
+    "48.png"
   ],
   "content_scripts": [{
       "matches": ["<all_urls>"],

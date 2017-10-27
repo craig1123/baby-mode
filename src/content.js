@@ -8,7 +8,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, cb) {
 
   function toggle() {
     if (msg.checked) {
-      document.addEventListener('keydown', keyboard);
+      window.addEventListener('keydown', keyboard);
       var section = document.createElement('section');
       var h1 = document.createElement('h1');
       var img = document.createElement('img');
@@ -31,7 +31,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, cb) {
         section.style.borderRadius = '50%';
         h1.style.display = 'none';
         section.appendChild(img);
-        img.src = chrome.extension.getURL("icon.png");
+        img.src = chrome.extension.getURL("48.png");
         img.style.webkitFilter = 'invert(1) contrast(500%)';
       };
       if (msg.once) {
@@ -51,7 +51,7 @@ chrome.runtime.onMessage.addListener(function(msg, sender, cb) {
         cornerStyles();
       }
     } else if(!msg.checked && !!document.getElementById('baby-mode-enabled-overlay')) {
-      document.removeEventListener('keydown', keyboard);
+      window.removeEventListener('keydown', keyboard);
       document.getElementById('baby-mode-enabled-overlay').remove();
     }
   }
