@@ -18,6 +18,11 @@ strong {
 .header img {
   width: 60px;
 }
+.separator {
+  width: 100%;
+  border-top: 2px groove white;
+  margin: 5px -5px 5px -3px;
+}
 .cmn-toggle {
   position: absolute;
   margin-left: -9999px;
