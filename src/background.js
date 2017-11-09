@@ -55,7 +55,7 @@ var attachSounds = {
   enter: 'snaredrum2.mp3',
   ']': 'tom2.mp3',
   '[': 'tom1.mp3',
-  delete: 'electrolong.mp3',
+  '\\': 'electrolong.mp3',
   '=': 'crash.mp3',
   '-': 'thump.mp3',
   '/': 'ah.mp3',
