@@ -3,7 +3,7 @@
   "manifest_version": 2,
   "name": "Baby Mode",
   "description": "Happy baby, happy browsing",
-  "version": "1.2",
+  "version": "1.3",
   "minimum_chrome_version": "51",
   "offline_enabled": true,
   "browser_action": {
