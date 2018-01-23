@@ -13,30 +13,32 @@ function soundListener(checked) {
 }
 
 function init() {
+  var fun = document.getElementById('fun');
   var toggle = document.getElementById('toggle');
   var ctrl = document.getElementById('ctrl');
   ctrl.innerText = navigator.platform.toUpperCase().indexOf('MAC')>=0 ? 'cmd' : 'ctrl';
 
   // initial state
   chrome.storage.sync.get({ checked: false }, function(item) {
-    toggle.checked = item.checked;
-    if (toggle.checked) {
+    fun.checked = item.checked;
+    if (fun.checked) {
       soundListener(true);
     }
   })
 
   // sends a message to the background script and saves option
   toggle.addEventListener('click', function() {
-    chrome.storage.sync.set({ checked: toggle.checked });
-    chrome.runtime.sendMessage({ type: 'toggle', checked: toggle.checked });
-    soundListener(toggle.checked);
+    fun.checked = !fun.checked;
+    chrome.storage.sync.set({ checked: fun.checked });
+    chrome.runtime.sendMessage({ type: 'toggle', checked: fun.checked });
+    soundListener(fun.checked);
   }, false);
 
   // listens for messages from background
   chrome.runtime.onMessage.addListener(function(request) {
     if (request.type === 'switch') {
-      toggle.checked = !toggle.checked;
-      soundListener(toggle.checked);
+      fun.checked = !fun.checked;
+      soundListener(fun.checked);
     }
   });
 

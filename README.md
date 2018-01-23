@@ -1,4 +1,4 @@
-#  <img src="48.png"> Baby Mode
+#  <img src="./src/48.png"> Baby Mode
 
 Happy baby, happy browsing
 
