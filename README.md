@@ -7,10 +7,10 @@ Baby Mode is a free Chrome extension that allows your infant to touch the keyboa
 Keyboard sounds made by my wife.
 
 <p align="center">
-    <a href="https://status.badgen.net/"><img src="https://badgen.net/chrome-web-store/v/efkbgchndofhepjnknffgiegmjihkepc" /></a>
-    <a href="https://status.badgen.net/"><img src="https://badgen.net/chrome-web-store/users/efkbgchndofhepjnknffgiegmjihkepc" /></a>
-    <a href="https://status.badgen.net/"><img src="https://badgen.net/chrome-web-store/price/efkbgchndofhepjnknffgiegmjihkepc" /></a>
-    <a href="https://status.badgen.net/"><img src="https://badgen.net/chrome-web-store/rating/efkbgchndofhepjnknffgiegmjihkepc" /></a>
-    <a href="https://status.badgen.net/"><img src="https://badgen.net/chrome-web-store/stars/efkbgchndofhepjnknffgiegmjihkepc" /></a>
-    <a href="https://status.badgen.net/"><img src="https://badgen.net/chrome-web-store/rating-count/efkbgchndofhepjnknffgiegmjihkepc" /></a>
+    <a href="https://chrome.google.com/webstore/detail/baby-mode/efkbgchndofhepjnknffgiegmjihkepc?hl=en"><img src="https://badgen.net/chrome-web-store/v/efkbgchndofhepjnknffgiegmjihkepc" /></a>
+    <a href="https://chrome.google.com/webstore/detail/baby-mode/efkbgchndofhepjnknffgiegmjihkepc?hl=en"><img src="https://badgen.net/chrome-web-store/users/efkbgchndofhepjnknffgiegmjihkepc" /></a>
+    <a href="https://chrome.google.com/webstore/detail/baby-mode/efkbgchndofhepjnknffgiegmjihkepc?hl=en"><img src="https://badgen.net/chrome-web-store/price/efkbgchndofhepjnknffgiegmjihkepc" /></a>
+    <a href="https://chrome.google.com/webstore/detail/baby-mode/efkbgchndofhepjnknffgiegmjihkepc?hl=en"><img src="https://badgen.net/chrome-web-store/rating/efkbgchndofhepjnknffgiegmjihkepc" /></a>
+    <a href="https://chrome.google.com/webstore/detail/baby-mode/efkbgchndofhepjnknffgiegmjihkepc?hl=en"><img src="https://badgen.net/chrome-web-store/stars/efkbgchndofhepjnknffgiegmjihkepc" /></a>
+    <a href="https://chrome.google.com/webstore/detail/baby-mode/efkbgchndofhepjnknffgiegmjihkepc?hl=en"><img src="https://badgen.net/chrome-web-store/rating-count/efkbgchndofhepjnknffgiegmjihkepc" /></a>
 </p>
