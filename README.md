@@ -6,9 +6,11 @@ Baby Mode is a free Chrome extension that allows your infant to touch the keyboa
 
 Keyboard sounds made by my wife.
 
-https://badgen.net/chrome-web-store/v/efkbgchndofhepjnknffgiegmjihkepc
-https://badgen.net/chrome-web-store/users/efkbgchndofhepjnknffgiegmjihkepc
-https://badgen.net/chrome-web-store/price/efkbgchndofhepjnknffgiegmjihkepc
-https://badgen.net/chrome-web-store/rating/efkbgchndofhepjnknffgiegmjihkepc
-https://badgen.net/chrome-web-store/stars/efkbgchndofhepjnknffgiegmjihkepc
-https://badgen.net/chrome-web-store/rating-count/efkbgchndofhepjnknffgiegmjihkepc
+<p align="center">
+    <a href="https://status.badgen.net/"><img src="https://badgen.net/chrome-web-store/v/efkbgchndofhepjnknffgiegmjihkepc" /></a>
+    <a href="https://status.badgen.net/"><img src="https://badgen.net/chrome-web-store/users/efkbgchndofhepjnknffgiegmjihkepc" /></a>
+    <a href="https://status.badgen.net/"><img src="https://badgen.net/chrome-web-store/price/efkbgchndofhepjnknffgiegmjihkepc" /></a>
+    <a href="https://status.badgen.net/"><img src="https://badgen.net/chrome-web-store/rating/efkbgchndofhepjnknffgiegmjihkepc" /></a>
+    <a href="https://status.badgen.net/"><img src="https://badgen.net/chrome-web-store/stars/efkbgchndofhepjnknffgiegmjihkepc" /></a>
+    <a href="https://status.badgen.net/"><img src="https://badgen.net/chrome-web-store/rating-count/efkbgchndofhepjnknffgiegmjihkepc" /></a>
+</p>
