@@ -4,7 +4,7 @@ Happy baby, happy browsing
 
 Baby Mode is a free Chrome extension that allows your infant to touch the keyboard, learning sounds and alphabet, all while you can peacefully browse the computer
 
-Keyboard sounds made by my wife.
+Keyboard sounds made by my Hannah Walker.
 
 <p align="center">
     <a href="https://chrome.google.com/webstore/detail/baby-mode/efkbgchndofhepjnknffgiegmjihkepc?hl=en"><img src="https://badgen.net/chrome-web-store/v/efkbgchndofhepjnknffgiegmjihkepc" /></a>
