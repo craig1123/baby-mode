@@ -1,62 +1,104 @@
+let babyModeEnabled = false;
+let babyModeOverlay = null;
+
 function keyboard(e) {
   e.preventDefault();
-  chrome.runtime.sendMessage({ type: 'sound', sound: e.key.toLowerCase() });
+  chrome.runtime
+    .sendMessage({ type: "sound", sound: e.key.toLowerCase() })
+    .catch((error) => {
+      console.error("Failed to send sound message:", error);
+    });
   return false;
-};
+}
 
-chrome.runtime.onMessage.addListener(function(msg, sender, cb) {
-
-  function toggle() {
-    if (msg.checked) {
-      window.addEventListener('keydown', keyboard);
-      var section = document.createElement('section');
-      var h1 = document.createElement('h1');
-      var img = document.createElement('img');
-      document.body.appendChild(section);
-      section.id = 'baby-mode-enabled-overlay';
-      section.style.position = 'fixed';
-      section.style.display = 'flex';
-      section.style.justifyContent = 'center';
-      section.style.alignItems = 'center';
-      section.style.zIndex = '9999';
-      section.style.background = 'rgba(135, 206, 250, 0.8)';
-
-      function cornerStyles() {
-        section.style.top = 'inherit';
-        section.style.left = 'inherit';
-        section.style.right = '2.5%';
-        section.style.bottom = '2.5%';
-        section.style.width = '75px';
-        section.style.height = '75px';
-        section.style.borderRadius = '50%';
-        h1.style.display = 'none';
-        section.appendChild(img);
-        img.src = chrome.extension.getURL("48.png");
-        img.style.webkitFilter = 'invert(1) contrast(500%)';
-      };
-      if (msg.once) {
-        section.style.top = '2.5%';
-        section.style.left = '2.5%';
-        section.style.width = '95%';
-        section.style.height = '95%';
-        section.style.borderRadius = '50px';
-        section.style.transition = '1.5s';
-        section.appendChild(h1);
-        h1.textContent = 'Baby Mode enabled';
-        h1.style.fontSize = '5em';
-        h1.style.color = '#fff';
-
-        setTimeout(cornerStyles, 1000);
-      } else {
-        cornerStyles();
-      }
-    } else if(!msg.checked && !!document.getElementById('baby-mode-enabled-overlay')) {
-      window.removeEventListener('keydown', keyboard);
-      document.getElementById('baby-mode-enabled-overlay').remove();
-    }
+function createOverlay(once) {
+  if (babyModeOverlay) {
+    return;
   }
 
-  if (msg.type === 'toggle') {
-    toggle();
+  const section = document.createElement("section");
+  const h1 = document.createElement("h1");
+  const img = document.createElement("img");
+
+  section.id = "baby-mode-enabled-overlay";
+  section.style.position = "fixed";
+  section.style.display = "flex";
+  section.style.justifyContent = "center";
+  section.style.alignItems = "center";
+  section.style.zIndex = "9999";
+  section.style.background = "rgba(135, 206, 250, 0.8)";
+
+  function cornerStyles() {
+    section.style.top = "inherit";
+    section.style.left = "inherit";
+    section.style.right = "2.5%";
+    section.style.bottom = "2.5%";
+    section.style.width = "75px";
+    section.style.height = "75px";
+    section.style.borderRadius = "50%";
+    h1.style.display = "none";
+    section.appendChild(img);
+    img.src = chrome.runtime.getURL("48.png");
+    img.style.webkitFilter = "invert(1) contrast(500%)";
+  }
+
+  if (once) {
+    section.style.top = "2.5%";
+    section.style.left = "2.5%";
+    section.style.width = "95%";
+    section.style.height = "95%";
+    section.style.borderRadius = "50px";
+    section.style.transition = "1.5s";
+    section.appendChild(h1);
+    h1.textContent = "Baby Mode enabled";
+    h1.style.fontSize = "5em";
+    h1.style.color = "#fff";
+
+    document.body.appendChild(section);
+    babyModeOverlay = section;
+    setTimeout(cornerStyles, 1000);
+  } else {
+    document.body.appendChild(section);
+    babyModeOverlay = section;
+    cornerStyles();
+  }
+}
+
+function removeOverlay() {
+  if (babyModeOverlay) {
+    babyModeOverlay.remove();
+    babyModeOverlay = null;
+  }
+}
+
+function updateBabyMode(checked, once = false) {
+  if (checked === babyModeEnabled) {
+    return;
+  }
+
+  babyModeEnabled = checked;
+
+  if (checked) {
+    window.addEventListener("keydown", keyboard);
+    createOverlay(once);
+  } else {
+    window.removeEventListener("keydown", keyboard);
+    removeOverlay();
+  }
+}
+
+chrome.storage.sync.get({ checked: false }, function (item) {
+  updateBabyMode(item.checked);
+});
+
+chrome.storage.onChanged.addListener(function (changes, areaName) {
+  if (areaName === "sync" && changes.checked !== undefined) {
+    updateBabyMode(changes.checked.newValue);
+  }
+});
+
+chrome.runtime.onMessage.addListener(function (msg, sender, cb) {
+  if (msg.type === "toggle") {
+    updateBabyMode(msg.checked, msg.once);
   }
 });

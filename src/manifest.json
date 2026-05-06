@@ -1,12 +1,12 @@
 {
   "author": "Craig Walker",
-  "manifest_version": 2,
+  "manifest_version": 3,
   "name": "Baby Mode",
   "description": "Happy Baby, Happy Browsing",
   "version": "1.4",
-  "minimum_chrome_version": "51",
+  "minimum_chrome_version": "109",
   "offline_enabled": true,
-  "browser_action": {
+  "action": {
     "default_icon": "48.png",
     "default_popup": "popup.html",
     "default_title": "Baby Mode"
@@ -17,11 +17,11 @@
     "128": "128.png"
   },
   "background": {
-    "scripts": ["background.js"]
+    "service_worker": "service-worker.js"
   },
   "commands": {
     "toggle-baby-mode": {
-       "suggested_key": {
+      "suggested_key": {
         "mac": "Command+Shift+0",
         "windows": "Ctrl+Shift+0"
       },
@@ -30,14 +30,17 @@
     }
   },
   "web_accessible_resources": [
-    "48.png"
+    {
+      "resources": ["48.png", "sounds/*"],
+      "matches": ["<all_urls>"]
+    }
   ],
-  "content_scripts": [{
+  "content_scripts": [
+    {
       "matches": ["<all_urls>"],
-      "js":      ["content.js"]
-  }],
-  "permissions": [
-    "storage",
-    "<all_urls>"
-  ]
+      "js": ["content.js"]
+    }
+  ],
+  "permissions": ["storage", "offscreen", "commands"],
+  "host_permissions": ["<all_urls>"]
 }
